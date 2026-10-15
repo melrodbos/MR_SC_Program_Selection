@@ -69,3 +69,25 @@
 @media(max-width:1000px){.work .grid{column-gap:12px;row-gap:22px}}
 @media(max-width:720px){.work .project.is-last-odd{grid-column:1}.work .grid{row-gap:25px}}
 @media(prefers-reduced-motion:reduce){.work .project,.work .asset img,.filters button{transition:none!important}.work .project.reveal-pending{opacity:1;transform:none}}
+
+
+/* FINAL EDITORIAL TILE FIX — 2026-10-15 */
+/* Balanced two-column project grid; each project sizes to its own content. */
+.work .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px;align-items:start;grid-auto-flow:row}
+.work .project,.work .project:nth-child(n),.work .project.is-last-odd{grid-column:auto;min-width:0;padding:0 0 15px;border-bottom:1px solid var(--line)}
+.work .project.is-last-odd{grid-column:1/-1}
+.work .project-heading{margin-bottom:9px}
+.work .asset-grid,.work .project.is-last-odd .asset-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;align-items:start}
+.work .asset{min-width:0;align-self:start;display:flex;flex-direction:column;overflow:hidden;background:#e5e5e1}
+.work .asset img,.work .project:nth-child(n) .asset img,.work .project.is-last-odd .asset img{width:100%;height:clamp(145px,17vw,255px);object-fit:contain;object-position:center;display:block}
+/* Three and five artwork groups: a deliberate feature tile fills the full row. */
+.work .asset-grid:has(> .asset:nth-child(3):last-child) > .asset:first-child,
+.work .asset-grid:has(> .asset:nth-child(5):last-child) > .asset:first-child{grid-column:1/-1}
+.work .asset-grid:has(> .asset:nth-child(3):last-child) > .asset:first-child img,
+.work .asset-grid:has(> .asset:nth-child(5):last-child) > .asset:first-child img{height:clamp(195px,23vw,330px)}
+.work .asset span{min-height:29px;align-items:center}
+.work .asset:hover img{transform:scale(1.015)}
+@media(min-width:1100px){.work .grid{column-gap:18px;row-gap:24px}}
+@media(max-width:850px){.work .grid{grid-template-columns:1fr;gap:25px}.work .project,.work .project:nth-child(n),.work .project.is-last-odd{grid-column:1}.work .asset img,.work .project:nth-child(n) .asset img{height:clamp(150px,29vw,260px)}.work .asset-grid:has(> .asset:nth-child(3):last-child) > .asset:first-child img,.work .asset-grid:has(> .asset:nth-child(5):last-child) > .asset:first-child img{height:clamp(190px,39vw,350px)}}
+@media(max-width:480px){.work .asset img,.work .project:nth-child(n) .asset img{height:145px}.work .asset-grid:has(> .asset:nth-child(3):last-child) > .asset:first-child img,.work .asset-grid:has(> .asset:nth-child(5):last-child) > .asset:first-child img{height:215px}}
+@media(prefers-reduced-motion:reduce){.work .asset:hover img{transform:none}}
