@@ -51,3 +51,21 @@
 @media(max-width:1000px){.work .project,.work .project:nth-child(n){grid-column:span 6}.work .asset img,.work .project:nth-child(n) .asset img{height:clamp(140px,20vw,220px)}}
 @media(max-width:720px){.work .grid{grid-template-columns:1fr;row-gap:28px}.work .project,.work .project:nth-child(n){grid-column:1}.work .asset img,.work .project:nth-child(n) .asset img{height:clamp(145px,35vw,290px)}}
 @media(max-width:420px){.work .asset img,.work .project:nth-child(n) .asset img{height:140px}}
+
+/* Presentation polish: compact, balanced editorial composition */
+.work .grid{column-gap:14px;row-gap:22px;grid-auto-flow:row dense}
+.work .project{padding-bottom:12px;transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.work .project.is-last-odd{grid-column:1/-1}
+.work .project.is-last-odd .asset-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.work .project.is-last-odd .asset img{height:clamp(180px,21vw,310px)}
+.work .project-heading{margin-bottom:9px}
+.work .asset-grid{gap:6px}
+.work .asset{transition:background .25s ease,transform .3s ease;position:relative}
+.work .asset img{transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+@media(hover:hover){.work .asset:hover img{transform:scale(1.025)}.work .asset:hover{background:#dcdcd7}}
+.work .project.reveal-pending{opacity:0;transform:translateY(12px)}
+.work .project.reveal-visible{opacity:1;transform:translateY(0)}
+.filters button{transition:background .2s ease,color .2s ease,border-color .2s ease}
+@media(max-width:1000px){.work .grid{column-gap:12px;row-gap:22px}}
+@media(max-width:720px){.work .project.is-last-odd{grid-column:1}.work .grid{row-gap:25px}}
+@media(prefers-reduced-motion:reduce){.work .project,.work .asset img,.filters button{transition:none!important}.work .project.reveal-pending{opacity:1;transform:none}}

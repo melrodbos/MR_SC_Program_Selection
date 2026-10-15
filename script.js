@@ -41,3 +41,21 @@ big.addEventListener('click',()=>changeZoom(zoom<=fitZoom*1.01?2:1.5));
 document.getElementById('close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
 document.getElementById('year').textContent=new Date().getFullYear();
+
+// Keep filtered and unfiltered grids balanced without stretching original artwork.
+const portfolioGrid=document.querySelector('.work .grid');
+const projects=[...portfolioGrid.querySelectorAll('.project')];
+function balancePortfolio(){
+  projects.forEach(p=>p.classList.remove('is-last-odd'));
+  const visible=projects.filter(p=>!p.hidden);
+  if(visible.length%2===1 && visible.length>1)visible.at(-1).classList.add('is-last-odd');
+}
+document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',balancePortfolio));
+balancePortfolio();
+// Progressive enhancement: no content is hidden if IntersectionObserver is unsupported.
+if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const revealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('reveal-pending');entry.target.classList.add('reveal-visible');revealObserver.unobserve(entry.target)}});
+  },{threshold:.06,rootMargin:'0px 0px 60px 0px'});
+  projects.forEach((p,i)=>{if(i>1){p.classList.add('reveal-pending');revealObserver.observe(p)}});
+}
