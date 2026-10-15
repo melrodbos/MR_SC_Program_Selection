@@ -1,3 +1,4 @@
 GitHub Pages portfolio. Upload the CONTENTS of this folder to your repository root. Each campaign displays individual original artwork files from original-assets/. Click an asset to enlarge, click again to zoom, or Open original for native full resolution. The previous résumé was intentionally removed because it was not the approved version; update the résumé section when ready. Original source files have not been AI edited or recomposed.
 
 Zoom fix: artwork opens fitted to the screen. Use + / − to zoom to true pixel sizes up to 500%, scroll to inspect details, or Open original. No source artwork was changed.
+
